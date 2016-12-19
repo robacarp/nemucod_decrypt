@@ -1,33 +1,17 @@
 require 'byebug'
+require_relative 'shared'
 
 class KeyRecovery
-  KEY_LENGTH = 1024
-
-  def unpack word
-    word.unpack(@pack_method).first
-  end
-
-  def pack word
-    Array(word).pack(@pack_method)
-  end
-
-  def hex2bin word
-    word.to_i(16).to_s(2)
-  end
-
-  def bin2hex word
-    word.to_i(2).to_s(16)
-  end
+  include Shared
 
   def initialize reference_file, crypted_file, key_file
     @reference_file = File.open reference_file, 'r+b'
     @crypted_file   = File.open crypted_file,   'r+b'
     File.truncate key_file, 0
     @key_file       = File.open key_file,       'r+b'
-    @pack_method = 'C1'
   end
 
-  def deinit
+  def stop
     @reference_file.close
     @crypted_file.close
     @key_file.close
@@ -72,8 +56,10 @@ reference_filename = '40_icebreakers_for_small_groups.pdf'
 crypted_filename = '40_icebreakers_for_small_groups.pdf.crypted'
 key_filename = 'key.bin'
 
-KeyRecovery.new(reference_filename, crypted_filename, key_filename).go
-
+KeyRecovery.new(reference_filename, crypted_filename, key_filename).tap do |keyer|
+  keyer.go
+  keyer.stop
+end
 
 puts "good luck"
 
