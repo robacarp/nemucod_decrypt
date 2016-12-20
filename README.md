@@ -1,10 +1,17 @@
-Ruby tool to decrypt Nemucod ransomware.
+## Nemucod Decrypt
+A Ruby tool to decrypt Nemucod ransomware.
 
-Spammers are still circulating emails with malicious javascript attachments designed to encrypt files on the target comptuer and hold them ransom for a bitcoin fee.
+## Development Status
 
-One such ransomware, dubbed Nemucod or DECRYPT.txt rapidly encrypts files using a weak XOR ecryption. Without the key, it is still difficult to recover the ransomed data. However, the XOR encryption key is easily derived by comparing a known good file to its encrypted counterpart.
+- [x] Key derivation and file decryption
+- [ ] Passing parameters in from a command line
+- [ ] Packaged up as a gem
 
-It is so called because it leaves this text file on the desktop:
+## Background
+
+A ransomware dubbed Nemucod or DECRYPT.txt rapidly encrypts files using a weak XOR encryption. Without the key, it is still difficult to recover the ransomed data. However, the XOR encryption key is easily derived by comparing a known good file to its encrypted counterpart. I read about the encryption technique and the possibility of deriving a key and decrypting files manually sounded like a great learning experience, so here it is.
+
+The Nemucod ransomware is easy to identidy by a signature text file it leaves on the Windows desktop of a victim computer. I've redacted some parts of this sample:
 
 > ATTENTION!
 > 
