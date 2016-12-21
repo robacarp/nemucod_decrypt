@@ -13,14 +13,23 @@ module CLI
       defer
     end
 
+    def help_banner
+      <<~USAGE
+      Usage:
+        #{$0} --derive-key -k keyfile.bin original_file crypted_file
+        #{$0} --decrypt    -k keyfile.bin crypted_file [crypted_file [...]]
+      USAGE
+    end
+
     def pull_slop
-      @opts = Slop.parse suppress_errors: true do |o|
+      @opts = Slop.parse suppress_errors: true, banner: help_banner do |o|
         o.bool '--derive-key', 'derive a keyfile from a reference file and a crypted file'
         o.bool '--decrypt',    'decript a file given a key'
-
-        o.string '-c', '--crypted', 'path to a crypted file'
-        o.string '-r', '--reference', 'path to a reference file'
         o.string '-k', '--key', 'path to a key file'
+        o.on '-h', '--help', 'print this help and exit' do
+          puts o
+          exit 1
+        end
       end
     end
 
@@ -42,6 +51,15 @@ module CLI
       elsif @opts.decrypt?
         CLI::Decrypt.new(@opts).exec
       end
+
+    rescue CLI::PrintHelp
+      help_and_exit
+    end
+
+    def help_and_exit
+      puts
+      puts @opts
+      exit 1
     end
 
   end

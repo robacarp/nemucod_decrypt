@@ -1,6 +1,9 @@
 require 'slop'
 
 module CLI
+  class PrintHelp < RuntimeError
+  end
+
   class Command
     def initialize options
       @opts = options
@@ -16,14 +19,14 @@ module CLI
     def opt_must_specify option, description
       if @opts[option].nil?
         puts "No #{description} specified"
-        exit 1
+        fail PrintHelp
       end
     end
 
     def path_must_exist path
       unless path_exists? path
         puts "File does not exist: #{path}"
-        exit 1
+        fail PrintHelp
       end
     end
 
@@ -44,7 +47,7 @@ module CLI
     def must_have_arguments count
       if @opts.arguments.count < count
         puts "You must specify #{count} files"
-        exit 1
+        fail PrintHelp
       end
     end
 
