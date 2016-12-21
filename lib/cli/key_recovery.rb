@@ -21,8 +21,8 @@ module CLI
       puts "Recovering key..."
 
       ::KeyRecovery.new(
-        file1: @reference,
-        file2: @crypted,
+        reference: @reference,
+        crypted: @crypted,
         key_file: @opts[:key]
       ).recover
 
