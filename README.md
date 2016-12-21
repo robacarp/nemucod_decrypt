@@ -4,7 +4,7 @@ A Ruby tool to decrypt Nemucod ransomware.
 ## Development Status
 
 - [x] Key derivation and file decryption
-- [ ] Passing parameters in from a command line
+- [x] Passing parameters in from a command line
 - [ ] Packaged up as a gem
 
 ## Background
