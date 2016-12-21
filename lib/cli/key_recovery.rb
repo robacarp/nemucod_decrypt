@@ -15,8 +15,6 @@ module CLI
       warn_if_exists  @opts[:key]
     end
 
-
-
     def run_command
       puts "Recovering key..."
 
@@ -27,8 +25,18 @@ module CLI
       ).recover
 
       puts
-      # TODO count nils in key file?
-      puts "key file is #{File.size(@opts[:key])} bytes long."
+      puts "Key file is #{File.size(@opts[:key])} bytes long and contains #{nul_count} NUL bytes."
+    end
+
+    def nul_count
+      nul_count = 0
+      File.open(@opts[:key], 'rb').each_byte do |byte|
+        if byte == 0x00
+          nul_count += 1
+        end
+      end
+
+      nul_count
     end
 
   end
