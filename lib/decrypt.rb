@@ -5,18 +5,16 @@ require_relative 'shared'
 class Decrypt
   include Shared
 
-  def initialize crypted_filepath, key_filepath
-    decrypted_filepath = crypted_filepath.gsub(/.crypted$/,'')
-    FileUtils.cp crypted_filepath, decrypted_filepath
-    # FileUtils.touch decrypted_filepath
-    # File.truncate decrypted_filepath, 0
+  def initialize(crypted_file:, key_file:)
+    decrypted_file = crypted_file.gsub(/.crypted$/,'')
+    FileUtils.cp crypted_file, decrypted_file
 
-    @decrypted_file = File.open decrypted_filepath, 'r+b'
-    @crypted_file   = File.open crypted_filepath,   'r+b'
-    @key_file       = File.open key_filepath,       'r+b'
+    @decrypted_file = File.open decrypted_file, 'r+b'
+    @crypted_file   = File.open crypted_file,   'rb'
+    @key_file       = File.open key_file,       'rb'
   end
 
-  def go
+  def decrypt
     offset = 0
     while offset < KEY_LENGTH
       @key_file.pos = offset
@@ -31,22 +29,8 @@ class Decrypt
 
       offset += 1
     end
-  end
 
-  def stop
     @crypted_file.close
     @key_file.close
   end
 end
-
-crypted_file = 'DOC082416-08242016125238.pdf.crypted'
-crypted_file = 'fruit.pdf.crypted'
-key_file = 'key.bin'
-
-Decrypt.new(crypted_file, key_file).tap do |keyer|
-  keyer.go
-  keyer.stop
-end
-
-puts "good luck"
-

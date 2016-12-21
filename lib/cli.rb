@@ -16,7 +16,7 @@ module CLI
     def pull_slop
       @opts = Slop.parse suppress_errors: true do |o|
         o.bool '--derive-key', 'derive a keyfile from a reference file and a crypted file'
-        o.bool '--decrypt', 'decript a file given a key'
+        o.bool '--decrypt',    'decript a file given a key'
 
         o.string '-c', '--crypted', 'path to a crypted file'
         o.string '-r', '--reference', 'path to a reference file'

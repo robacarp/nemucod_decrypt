@@ -4,12 +4,13 @@ require 'fileutils'
 class KeyRecovery
   include Shared
 
-  def initialize(reference_file:, crypted_file:, key_file:)
+  def initialize(file1:, file2:, key_file:)
     FileUtils.touch key_file
     File.truncate key_file, 0
-    @key_file       = File.open key_file,       'r+b'
-    @reference_file = File.open reference_file, 'r+b'
-    @crypted_file   = File.open crypted_file,   'r+b'
+
+    @key_file       = File.open key_file, 'r+b'
+    @reference_file = File.open file1,    'rb'
+    @crypted_file   = File.open file2,    'rb'
   end
 
   def recover
@@ -18,10 +19,6 @@ class KeyRecovery
       byte = extract(read_byte, read_cryptbyte)
       @key_file.pos = @offset
       @key_file.write byte
-
-      if block_given?
-        yield byte, @offset
-      end
 
       @offset += 1
     end

@@ -27,10 +27,23 @@ module CLI
       end
     end
 
-    def warn_if_exists path
-      if path_exists? path
-        puts "File exists: #{path}"
-        puts "Overwrite? [yN] "
+    def warn_if_exists path, die: true
+      return true unless path_exists? path
+
+      puts "File exists: #{path}"
+      print "Overwrite? [yN] "
+      response = STDIN.gets.chomp.downcase
+
+      if die && response != ?y
+        exit 1
+      end
+
+      response == ?y
+    end
+
+    def must_have_arguments count
+      if @opts.arguments.count < count
+        puts "You must specify #{count} files"
         exit 1
       end
     end
