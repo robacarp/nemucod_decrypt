@@ -5,7 +5,39 @@ A Ruby tool to decrypt Nemucod ransomware.
 
 - [x] Key derivation and file decryption
 - [x] Passing parameters in from a command line
-- [ ] Packaged up as a gem
+- [x] Packaged up as a gem
+
+## Usage
+
+Install the uncrypt_nemucod gem following your preference.
+
+Assuming a file `fruit.pdf.crypted` in the local directory, and a non-crypted version of the same file, `fruit.pdf`, first derive the decrypt key:
+
+```
+$ uncrypt_nemucod --derive-key -k decrypt.key fruit.pdf.crypted fruit.pdf
+Recovering key...
+
+Key file is 1024 bytes long and contains 20 NUL bytes.
+```
+
+Now, decrypt all `.crypted` files in the current directory:
+
+```
+dutero-basilius ~/Desktop> uncrypt_nemucod --decrypt -k decrypt.key *.crypted
+Decrypting example_file.pdf.crypted...OK
+Decrypting example_file.jpg.crypted...OK
+Decrypting example_file.txt.crypted...OK
+Decrypting example_file.gif.crypted...OK
+Decrypting example_file.doc.crypted...OK
+Decrypting example_file.xls.crypted...OK
+Decrypting example_file.wav.crypted...OK
+Decrypting example_file.mp3.crypted...OK
+Decrypting example_file.m4a.crypted...OK
+Decrypting example_file.ppt.crypted...OK
+Decrypting example_file.mid.crypted...OK
+Decrypting example_file.exe.crypted...OK
+Decrypting example_file.png.crypted...OK
+```
 
 ## Background
 
