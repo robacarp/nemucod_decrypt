@@ -1,5 +1,6 @@
 require_relative 'command'
 require_relative '../key_recovery'
+require_relative '../shared'
 
 module CLI
   class KeyRecovery < Command
@@ -11,6 +12,9 @@ module CLI
 
       path_must_exist @crypted
       path_must_exist @reference
+
+      file_bigger_than_key? @crypted
+      file_bigger_than_key? @reference
 
       warn_if_exists  @opts[:key]
     end
@@ -26,6 +30,15 @@ module CLI
 
       puts
       puts "Key file is #{File.size(@opts[:key])} bytes long and contains #{nul_count} NUL bytes."
+    end
+
+    private
+
+    def file_bigger_than_key? path
+      unless File.size(path) >= Shared::KEY_LENGTH
+        puts "#{path} must be bigger than #{Shared::KEY_LENGTH}"
+        fail PrintHelp
+      end
     end
 
     def nul_count
