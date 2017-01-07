@@ -5,6 +5,7 @@ Gem::Specification.new do |s|
   s.version     = UncryptNemucod::VERSION
   s.license     = 'MIT'
   s.summary     = 'A small utility gem to derive and decode files "encrypted" by the Nemucod ransomware.'
+  s.add_runtime_dependency 'slop', '~> 4.4.1', '>= 4.4.1'
   s.author      = 'robacarp'
   s.platform    =  Gem::Platform::RUBY
   s.files       = [
