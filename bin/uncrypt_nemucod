@@ -1,4 +1,4 @@
 #!/usr/bin/env ruby
 
-require_relative '../lib/cli'
-CLI::Runner.exec
+require_relative '../uncrypt_nemucod/cli'
+UncryptNemucod::CLI::Runner.exec
