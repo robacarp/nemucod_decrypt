@@ -39,6 +39,20 @@ Decrypting example_file.exe.crypted...OK
 Decrypting example_file.png.crypted...OK
 ```
 
+## Finding an unencrypted file
+
+Assuming your hard drive is encrypted, how do you go about finding an unencrypted version of one of your files? How do you know it's the right one?
+
+Start here, and put your detective hat on:
+
+- **Stock files, such as sample pictures or documents that came with the operating system**: If one of them has been encrypted, find the same file on another computer or on the internet.
+- **Files recently downloaded from the internet**: look through your downloads directory for images or recently downloaded from the internet. Find the same file on the internet again.
+- **Backups**: Check your backups...you do have some backups, right? Ok. Did you ever copy a file to a thumb drive? Or send one over email? Unfortuately printing a file probably won't help.
+
+### How do you know you've got the right file?
+
+- Check the size, in bytes. Both the crypted and uncrypted file should match exactly.
+
 ## Background
 
 A ransomware dubbed Nemucod or DECRYPT.txt rapidly encrypts files using a weak XOR encryption. Without the key, it is still difficult to recover the ransomed data. However, the XOR encryption key is easily derived by comparing a known good file to its encrypted counterpart. I read about the encryption technique and the possibility of deriving a key and decrypting files manually sounded like a great learning experience, so here it is.
