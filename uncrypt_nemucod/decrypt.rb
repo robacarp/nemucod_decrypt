@@ -16,7 +16,7 @@ module UncryptNemucod
 
     def decrypt
       offset = 0
-      while offset < KEY_LENGTH
+      while offset < KEY_LENGTH && offset < @crypted_file.size
         @key_file.pos = offset
         @crypted_file.pos = offset
         @decrypted_file.pos = offset
