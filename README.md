@@ -9,7 +9,7 @@ A Ruby tool to decrypt Nemucod ransomware.
 
 ## Usage
 
-Install the uncrypt_nemucod gem following your preference.
+Install the uncrypt_nemucod gem following your preference. Also needed is the cli dependency gem, slop. 
 
 Assuming a file `fruit.pdf.crypted` in the local directory, and a non-crypted version of the same file, `fruit.pdf`, first derive the decrypt key:
 
