@@ -57,7 +57,7 @@ Start here, and put your detective hat on:
 
 A ransomware dubbed Nemucod or DECRYPT.txt rapidly encrypts files using a weak XOR encryption. Without the key, it is still difficult to recover the ransomed data. However, the XOR encryption key is easily derived by comparing a known good file to its encrypted counterpart. I read about the encryption technique and the possibility of deriving a key and decrypting files manually sounded like a great learning experience, so here it is.
 
-The Nemucod ransomware is easy to identidy by a signature text file it leaves on the Windows desktop of a victim computer. I've redacted some parts of this sample:
+The Nemucod ransomware is easy to identify by a signature text file it leaves on the Windows desktop of a victim computer. I've redacted some parts of this sample:
 
 > ATTENTION!
 > 
@@ -74,7 +74,7 @@ The Nemucod ransomware is easy to identidy by a signature text file it leaves on
 > 
 > - If you do not pay in 3 days YOU LOOSE ALL YOUR FILES.
 > - Nobody can help you except us.
-> - It's useless to reinstall Windows, update antivirus software, etc.
+> - It's useless to reinstall Windows, update anti-virus software, etc.
 > - Your files can be decrypted only after you make payment.
 > - You can find this manual on your desktop (DECRYPT.txt).
 
