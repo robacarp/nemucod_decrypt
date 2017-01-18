@@ -74,7 +74,7 @@ The Nemucod ransomware is easy to identify by a signature text file it leaves on
 > 
 > - If you do not pay in 3 days YOU LOOSE ALL YOUR FILES.
 > - Nobody can help you except us.
-> - It's useless to reinstall Windows, update anti-virus software, etc.
+> - It's useless to reinstall Windows, update antivirus software, etc.
 > - Your files can be decrypted only after you make payment.
 > - You can find this manual on your desktop (DECRYPT.txt).
 
